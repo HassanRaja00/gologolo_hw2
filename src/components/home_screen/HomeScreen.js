@@ -37,8 +37,8 @@ class HomeScreen extends Component {
                 </div>
                 <div className="col s8">
                     <div id="home_banner_container">
-                        @todo<br />
-                        List Maker
+                        GoLogoLo<br/>
+                        <small>List Maker</small>
                     </div>
                     <div>
                         <button

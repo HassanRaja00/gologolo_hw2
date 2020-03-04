@@ -173,6 +173,11 @@ class App extends Component {
     this.tps.undoTransaction();
   }
 
+  // redo transaction
+  redo = () => {
+    this.tps.doTransaction();
+  }
+
   /**
    * resetTransactions - This method clears all the transactions in
    * the undo/redo stack, which should be done every time the logo
@@ -189,6 +194,11 @@ class App extends Component {
    */
   canUndo = () => {
     return this.tps.hasTransactionToUndo();
+  }
+
+  // let UI know if there are redoable transactions
+  canRedo = () => {
+    return this.tps.hasTransactionToRedo();
   }
 
   // THERE ARE SEVEN FUNCTIONS FOR UPDATING THE App state, TWO OF
@@ -294,6 +304,8 @@ class App extends Component {
     console.log("App afterLogoDeleted logos: " + this.logosToString(this.state.logos));
     // FIRST GO HOME
     this.goToHomeScreen();
+    //finish this method
+    //filter out the logo that you were just in
   }
 
   // THERE ARE TWO FUNCTIONS TO HELP GENERATE OUTPUT FOR DEBUGGING
@@ -346,6 +358,8 @@ class App extends Component {
           changeLogoCallback={this.buildChangeLogoTransaction}  // TRANSACTION CALLBACK
           undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
+          deleteLogo={this.deleteLogo} //add delete logo as a prop
+
 
         />;
       default:

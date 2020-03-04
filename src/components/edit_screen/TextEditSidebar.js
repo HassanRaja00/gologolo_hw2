@@ -43,6 +43,7 @@ class TextEditSidebar extends Component {
                     <div className="card-content white-text">
                         <button className="waves-effect waves-light btn-small">&#9998;</button>
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
+                        <button className={undoClass} onClick={this.handleUndo}>Redo</button>
                     </div>
                 </div>
                 <div className="card blue-grey darken-1">
@@ -58,11 +59,61 @@ class TextEditSidebar extends Component {
                             </div>
                         </div>
                         <div className="row">
+                            <div className="col s4">Background Color**:</div>
+                            <div className="col s8">
+                                <input type="color"
+                                        // onChange={}
+                                        // value={}
+                                />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Border Color**:</div>
+                            <div className="col s8">
+                                <input type="color"
+                                        // onChange={}
+                                        // value={}
+                                />
+                            </div>
+                        </div>
+                        <div className="row">
                             <div className="col s4">Font Size:</div>
                             <div className="col s8">
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleFontSizeChange}
                                     value={this.props.logo.fontSize} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Border Radius**:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    // onChange={} value={}
+                                     />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Border Thickness**:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    // onChange={} value={}
+                                     />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Padding**:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    // onChange={} value={}
+                                     />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Margin**:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    // onChange={} value={}
+                                     />
                             </div>
                         </div>
                     </div>

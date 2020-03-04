@@ -30,7 +30,9 @@ class Navbar extends React.Component {
             goLogoLo
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li style={ {cursor: "pointer"} }>&#128465;</li>
+            <li style={ {cursor: "pointer",
+                        fontSize: "40px"} }
+                onClick={this.deleteLogo}>&#128465;</li>
           </ul>
         </div>
       </nav>
