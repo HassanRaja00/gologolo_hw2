@@ -357,7 +357,9 @@ class App extends Component {
           goToHomeCallback={this.goToHomeScreen}                    // NAVIGATION CALLBACK
           changeLogoCallback={this.buildChangeLogoTransaction}  // TRANSACTION CALLBACK
           undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
-          canUndo={this.canUndo}                          // TRANSACTION CALLBACK
+          canUndo={this.canUndo}                          // TRANSACTION CALLBACK\
+          redoCallback={this.redo} //transaction for redo
+          canRedo={this.canRedo}
           deleteLogo={this.deleteLogo} //add delete logo as a prop
 
 

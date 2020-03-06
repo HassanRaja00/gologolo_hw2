@@ -4,9 +4,15 @@ import React, { Component } from 'react'
 class TextEditWorkspace extends Component {
     render() {
         const styles = {
-            container: {
+            container: { //FINISH FOR ALL FIELDS
                 color: this.props.logo.textColor,
-                fontSize: this.props.logo.fontSize + "pt"
+                fontSize: this.props.logo.fontSize + "pt",
+                padding: this.props.logo.padding + "pt",
+                backgroundColor: this.props.logo.backgroundColor,
+                borderColor: this.props.logo.borderColor,
+                borderRadius: this.props.logo.borderRadius + "pt",
+                borderThicknes: this.props.logo.borderThicknes + "pt",
+                margin: this.props.logo.margin + "pt"
             }
         }
         return (
