@@ -7,7 +7,7 @@ class TextEditSidebar extends Component {
         // WE'LL MANAGE THE UI CONTROL
         // VALUES HERE
         this.state = {
-            textColor : "#FF0000",
+            textColor : "#FF0000", //fix hardcoded values later
             fontSize : 24,
             backgroundColor : "#FF0000",
             borderColor : "#FF0000",

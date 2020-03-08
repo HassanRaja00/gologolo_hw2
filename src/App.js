@@ -314,6 +314,8 @@ class App extends Component {
     this.goToHomeScreen();
     //finish this method
     //filter out the logo that you were just in
+    let logosString = JSON.stringify(this.state.logos);
+    localStorage.setItem("recent_work", logosString);
   }
 
   // THERE ARE TWO FUNCTIONS TO HELP GENERATE OUTPUT FOR DEBUGGING
