@@ -76,6 +76,7 @@ class TextEditSidebar extends Component {
             this.state.borderRadius, this.state.borderThickness, this.state.margin);
     }
 
+
     render() {
         let undoDisabled = !this.props.canUndo();
         let undoClass = "waves-effect waves-light btn-small";
@@ -85,6 +86,11 @@ class TextEditSidebar extends Component {
         let redoClass = "waves-effect waves-light btn-small";
         if(redoDisabled)
             redoClass += " disabled"
+        let fontSizeValue = this.props.logo.fontSize;
+        let borderRadiusValue = this.props.logo.borderRadius;
+        let borderThicknessValue = this.props.logo.borderThickness
+        let paddingValue = this.props.logo.padding;
+        let marginValue = this.props.logo.margin;
         return (
             <div className="card-panel col s4">
                 <div className="card blue-grey darken-1">
@@ -127,6 +133,7 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Font Size:</div>
                             <div className="col s8">
+                                 <div style={{textAlign: "center"}}>{fontSizeValue}</div>
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleFontSizeChange}
                                     value={this.props.logo.fontSize} />
@@ -135,6 +142,7 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Border Radius:</div>
                             <div className="col s8">
+                                <div style={{textAlign: "center"}}>{borderRadiusValue}</div>
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleBorderRadiusChange} 
                                     value={this.props.logo.borderRadius}
@@ -144,6 +152,7 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Border Thickness:</div>
                             <div className="col s8">
+                                <div style={{textAlign: "center"}}>{borderThicknessValue}</div>
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleBorderThicknessChange} 
                                     value={this.props.logo.borderThickness}
@@ -153,6 +162,7 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Padding:</div>
                             <div className="col s8">
+                                <div style={{textAlign: "center"}}>{paddingValue}</div>
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handlePaddingChange} 
                                     value={this.props.logo.padding}
@@ -162,6 +172,7 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Margin:</div>
                             <div className="col s8">
+                                <div style={{textAlign: "center"}}>{marginValue}</div>
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleMarginChange} 
                                     value={this.props.logo.margin}
