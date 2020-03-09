@@ -1,20 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+// import Modal from './Modal';
+import {Modal} from 'react-materialize'
 
 class TextEditSidebar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         // WE'LL MANAGE THE UI CONTROL
         // VALUES HERE
         this.state = {
-            textColor : "#FF0000", //fix hardcoded values later
-            fontSize : 24,
-            backgroundColor : "#FF0000",
-            borderColor : "#FF0000",
-            borderRadius : 10,
-            borderThickness : 15,
-            padding: 5,
-            margin: 0
+            text: props.logo.text,
+            textColor : props.logo.textColor, //fix hardcoded values later
+            fontSize : props.logo.fontSize,
+            backgroundColor : props.logo.backgroundColor,
+            borderColor : props.logo.borderColor,
+            borderRadius : props.logo.borderRadius,
+            borderThickness : props.logo.borderThickness,
+            padding: props.logo.padding,
+            margin: props.logo.margin
         }
     }
 
@@ -68,10 +71,20 @@ class TextEditSidebar extends Component {
         this.setState({ margin: event.target.value }, this.completeUserEditing);
     }
 
+    changingText = (event) => {
+        if(event.target.value !== ""){
+            this.setState({ text: event.target.value });
+        }
+    }
+
+    handleTextChange = () => {
+        console.log("changing logo text");
+        this.completeUserEditing();
+    }
+
     completeUserEditing = () => {
         console.log("completeUserEditing");
-        console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor, 
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, 
             this.state.fontSize, this.state.padding, this.state.backgroundColor, this.state.borderColor, 
             this.state.borderRadius, this.state.borderThickness, this.state.margin);
     }
@@ -95,7 +108,18 @@ class TextEditSidebar extends Component {
             <div className="card-panel col s4">
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <button className="waves-effect waves-light btn-small">&#9998;</button>
+                        {/* <Modal /> */}
+                        <Modal header='Edit Logo Text'
+                                fixedFooter
+                                trigger={<button className="waves-effect waves-light btn-small">&#9998;</button>}>
+                                    {<input type='text'
+                                            onChange={this.changingText}/>}
+                                    {<button className="waves-effect waves-light btn-small"
+                                            // onClick={this.handleTextChange}
+                                            // value={this.props.logo.text}
+                                            >Enter</button>}
+                        </Modal>
+                        {/* <button className="waves-effect waves-light btn-small">&#9998;</button> */}
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
                         <button className={redoClass} onClick={this.handleRedo}>Redo</button>
                     </div>
