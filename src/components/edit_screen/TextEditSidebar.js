@@ -10,6 +10,7 @@ class TextEditSidebar extends Component {
         // VALUES HERE
         this.state = {
             text: props.logo.text,
+            potentialNewText: "",
             textColor : props.logo.textColor, //fix hardcoded values later
             fontSize : props.logo.fontSize,
             backgroundColor : props.logo.backgroundColor,
@@ -72,14 +73,15 @@ class TextEditSidebar extends Component {
     }
 
     changingText = (event) => {
-        if(event.target.value !== ""){
-            this.setState({ text: event.target.value });
+        if(event.target.value !== "" && !this.checkAllWhitespaces(event.target.value)){
+            let newstr = event.target.value.replace(/ /g, "\u00a0");
+            this.setState({ potentialNewText: newstr });
         }
     }
 
     handleTextChange = () => {
         console.log("changing logo text");
-        this.completeUserEditing();
+        this.setState({ text: this.state.potentialNewText, potentialNewText: ""}, this.completeUserEditing);
     }
 
     completeUserEditing = () => {
@@ -89,6 +91,15 @@ class TextEditSidebar extends Component {
             this.state.borderRadius, this.state.borderThickness, this.state.margin);
     }
 
+    // this method checks if a string is completely made of whitespaces
+    checkAllWhitespaces = (string) => {
+        let cleanedStr = string.replace(/\s/g, '');
+        if(cleanedStr.length === ''){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     render() {
         let undoDisabled = !this.props.canUndo();
@@ -115,8 +126,7 @@ class TextEditSidebar extends Component {
                                     {<input type='text'
                                             onChange={this.changingText}/>}
                                     {<button className="waves-effect waves-light btn-small"
-                                            // onClick={this.handleTextChange}
-                                            // value={this.props.logo.text}
+                                            onClick={this.handleTextChange}
                                             >Enter</button>}
                         </Modal>
                         {/* <button className="waves-effect waves-light btn-small">&#9998;</button> */}
