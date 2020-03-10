@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import Modal from './Modal';
 import {Modal} from 'react-materialize'
 
+
 class TextEditSidebar extends Component {
     constructor(props) {
         super(props);
@@ -19,6 +20,20 @@ class TextEditSidebar extends Component {
             borderThickness : props.logo.borderThickness,
             padding: props.logo.padding,
             margin: props.logo.margin
+        }
+    }
+
+
+    hotKeys = (event) => {
+        if(event.keyCode === 90 /* ctrl+z */ && event.ctrlKey){
+            if(this.props.canUndo){
+                this.handleUndo();
+            }
+        }
+        if(event.keyCode === 89 /* ctrl+y */ && event.ctrlKey){
+            if(this.props.canRedo){
+                this.handleRedo();
+            }
         }
     }
 
@@ -85,9 +100,6 @@ class TextEditSidebar extends Component {
         if(this.state.potentialNewText !== ""){
             this.setState({ text: this.state.potentialNewText, potentialNewText: ""}, this.completeUserEditing);
         }
-        
-
-        
     }
 
     completeUserEditing = () => {
@@ -108,6 +120,8 @@ class TextEditSidebar extends Component {
         }
     }
 
+    
+
     render() {
         let undoDisabled = !this.props.canUndo();
         let undoClass = "waves-effect waves-light btn-small";
@@ -123,7 +137,7 @@ class TextEditSidebar extends Component {
         let paddingValue = this.props.logo.padding;
         let marginValue = this.props.logo.margin;
         return (
-            <div className="card-panel col s4">
+            <div className="card-panel col s4" onKeyDown={this.hotKeys}>
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
                         {/* <Modal /> */}
