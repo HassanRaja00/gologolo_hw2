@@ -61,9 +61,9 @@ class Modal extends Component {
             <input type="text" />
           </div>
           <div class="modal-footer">
-            <a class="modal-close waves-effect waves-red btn-flat">
+            <div class="modal-close waves-effect waves-red btn-flat">
               Cancel
-            </a>
+            </div>
             <a class="modal-close waves-effect waves-green btn-flat">
               Change
             </a>

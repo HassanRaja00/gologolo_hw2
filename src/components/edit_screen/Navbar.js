@@ -1,4 +1,5 @@
 import React from 'react'
+import {Modal, Button} from 'react-materialize'
 
 class Navbar extends React.Component {
   constructor() {
@@ -37,7 +38,16 @@ class Navbar extends React.Component {
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li style={ {cursor: "pointer",
                         fontSize: "40px"} }
-                onClick={this.delete}>&#128465;</li>
+                >
+                  <Modal actions={[<Button flat modal="close" node="button" waves="green">Cancel</Button>]}
+                          header='Delete Logo?'
+                          trigger={<div>&#128465;</div>}>
+                            {<button className="waves-effect waves-light btn-small"
+                            onClick={this.delete}>Confirm, Delete</button>}
+
+                  </Modal>
+                  
+                  </li>
           </ul>
         </div>
       </nav>

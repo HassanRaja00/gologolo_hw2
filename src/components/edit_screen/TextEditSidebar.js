@@ -73,7 +73,7 @@ class TextEditSidebar extends Component {
     }
 
     changingText = (event) => {
-        if(event.target.value !== "" && !this.checkAllWhitespaces(event.target.value)){
+        if(event.target.value !== ""){
             let newstr = event.target.value.replace(/ /g, "\u00a0");
             this.setState({ potentialNewText: newstr });
         }
@@ -81,7 +81,13 @@ class TextEditSidebar extends Component {
 
     handleTextChange = () => {
         console.log("changing logo text");
-        this.setState({ text: this.state.potentialNewText, potentialNewText: ""}, this.completeUserEditing);
+        this.checkAllWhitespaces(this.state.potentialNewText);
+        if(this.state.potentialNewText !== ""){
+            this.setState({ text: this.state.potentialNewText, potentialNewText: ""}, this.completeUserEditing);
+        }
+        
+
+        
     }
 
     completeUserEditing = () => {
@@ -95,9 +101,10 @@ class TextEditSidebar extends Component {
     checkAllWhitespaces = (string) => {
         let cleanedStr = string.replace(/\s/g, '');
         if(cleanedStr.length === ''){
-            return true;
+            this.setState({ potentialNewText: ""})
+            return this.state.text;
         } else {
-            return false;
+            return string;
         }
     }
 
@@ -120,8 +127,7 @@ class TextEditSidebar extends Component {
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
                         {/* <Modal /> */}
-                        <Modal header='Edit Logo Text'
-                                fixedFooter
+                        <Modal  header='Edit Logo Text'
                                 trigger={<button className="waves-effect waves-light btn-small">&#9998;</button>}>
                                     {<input type='text'
                                             onChange={this.changingText}/>}
