@@ -88,10 +88,18 @@ class TextEditSidebar extends Component {
     }
 
     changingText = (event) => {
-        if(event.target.value !== ""){
+        let str = event.target.value.replace(/\s/g, '')
+        if(str !== ''){
             let newstr = event.target.value.replace(/ /g, "\u00a0");
             this.setState({ potentialNewText: newstr });
         }
+        // if(event.target.value !== "" || !event.target.value.replace(/\s/g, '').length){
+        //     console.log('valid string');
+        //     // let newstr = event.target.value.replace(/ /g, "\u00a0");
+        //     // this.setState({ potentialNewText: newstr });
+        // } else{
+        //     console.log("invalid string")
+        // }
     }
 
     handleTextChange = () => {
@@ -110,13 +118,12 @@ class TextEditSidebar extends Component {
     }
 
     // this method checks if a string is completely made of whitespaces
-    checkAllWhitespaces = (string) => {
-        let cleanedStr = string.replace(/\s/g, '');
-        if(cleanedStr.length === ''){
-            this.setState({ potentialNewText: ""})
-            return this.state.text;
-        } else {
-            return string;
+    checkAllWhitespaces = (str) => {
+        if (!str.replace(/\s/g, '').length) {
+            console.log('string only contains whitespace (ie. spaces, tabs or line breaks)');
+            return true;
+        } else{
+            return false;
         }
     }
 
